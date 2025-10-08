@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { sanitizeMDX } from "@/lib/sanitize";
 const APP = process.cwd();                 // Vercel project root (apps/site)
 const CONTENT_DIR = path.join(APP, ".content");
 export function listArticles() {

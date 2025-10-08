@@ -1,42 +1,16 @@
 {
-  "tenant": {
-    "slug": "baby-gender",
-    "displayName": "Baby Gender HQ",
-    "domain": "babygenderhq.com",
-    "status": "live"
-  },
+  "tenant": { "slug": "baby-gender", "displayName": "Baby Gender HQ", "domain": "babygenderhq.com" },
   "brand": {
-    "palette": {"primary":"#5ab963","ink":"#0f172a","muted":"#94a3b8","bg":"#ffffff"},
-    "font": {"title":"Inter Black","body":"Inter"},
-    "og_style": "soft-waves",
-    "icon_set": "outline-2px"
+    "palette": { "primary": "#5ab963", "ink": "#0f172a", "muted": "#64748b", "bg": "#ffffff" },
+    "font": { "title": "Inter Black", "body": "Inter" }
   },
   "eeat": {
-    "authors":[{"name":"Dr. L. Ramos, RN, IBCLC"}],
-    "reviewers":[{"name":"S. Hu, MD"}],
-    "disclaimer":"Educational only; not medical advice."
+    "authors": [{ "name": "Dr. L. Ramos, RN, IBCLC" }],
+    "disclaimer": "Educational only; not medical advice."
   },
-  "cadence": {"posts_per_day": 4},
-  "budgets": {"openai_tokens": 250000,"images_per_post": 2,"videos_per_post": 1},
-  "sources_whitelist": ["acog.org","nih.gov","cdc.gov","clevelandclinic.org","who.int","nature.com","mayoclinic.org"],
-  "ia": {
-    "pillars":[
-      {"slug":"methods-tests","title":"Methods & Tests"},
-      {"slug":"ultrasound-imaging","title":"Ultrasound & Imaging"},
-      {"slug":"myths-evidence","title":"Myths vs Evidence"},
-      {"slug":"tools-calculators","title":"Tools & Calculators"},
-      {"slug":"products-guides","title":"Products & Guides"}
-    ],
-    "clusters":[
-      {"pillar":"methods-tests","slug":"theories","title":"Ramzi, Nub & Skull","seedQueries":["ramzi method","nub theory","skull theory"],"cornerstoneSlug":"ramzi-method-accuracy","minArticles":12},
-      {"pillar":"methods-tests","slug":"clinical","title":"NIPT, CVS & Amnio","seedQueries":["nipt timing","cvs vs amnio"],"cornerstoneSlug":"nipt-accuracy","minArticles":10}
-    ]
-  },
-  "block_weights": {
-    "Hero.image-right": 0.6, "Hero.minimal": 0.2,
-    "FAQ.count": [4,7], "Chart.bar": 0.7,
-    "Calculator.gender-fun": 0.5, "RelatedLinks.minmax": [3,5]
-  },
-  "video_preset": {"template":"explain-60s","voice":"female_calm_v1"},
-  "thresholdsOverride": {}
+  "ads": {
+    "enabled": false,
+    "network": "gpt",
+    "placements": { "top": false, "inArticleTop": false, "inArticleBottom": false, "sidebar": false }
+  }
 }

@@ -5,6 +5,7 @@ import rehypeAutolink from "rehype-autolink-headings";
 import Calculator from "@/components/Calculator";
 import Quiz from "@/components/Quiz";
 import Chart from "@/components/Chart";
+
 export default function MDX({ source }) {
   return (
     <MDXRemote
@@ -12,6 +13,7 @@ export default function MDX({ source }) {
       components={{ Calculator, Quiz, Chart }}
       options={{
         mdxOptions: {
+          // MDX already supports HTML; we sanitize comments/doctype in prepare_content.mjs
           remarkPlugins: [remarkGfm],
           rehypePlugins: [[rehypeSlug], [rehypeAutolink, { behavior: "wrap" }]]
         }

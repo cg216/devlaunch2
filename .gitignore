@@ -9,3 +9,5 @@ dist
 
 # build-time copied tenant content
 apps/site/.content/
+
+apps/site/.content/

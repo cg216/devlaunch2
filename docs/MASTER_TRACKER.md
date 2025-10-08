@@ -5,4 +5,4 @@
 |---:|--------|------|-------|--------|-------|:------------:|:----:|:----:|:---------:|:------:|:----------:|:------------:|
 | - | baby-gender | skull-theory-explained | Skull Theory Explained | approved | @cg216 | ☑ | ☑ | ☑ | ☑ | ☑ | ☑ | 2025-10-08 16:21:50 UTC |
 | - | baby-gender | ramzi-method-accuracy | Ramzi, Nub | approved | ramzi-method-accuracy | ☑ | ☑ | ☑ | ☑ | ☑ | ☑ | 2025-10-08 16:21:50 UTC |
-| 1 | baby-gender | nub-theory-explained | Nub Theory Explained | approved | @cg216 | ☑ | ☑ | ☑ | ☑ | ☑ | ☑ | 2025-10-08 16:21:49 UTC |
+| 1 | baby-gender | nub-theory-explained | Nub Theory Explained | approved | @cg216 | ☑ | ☑ | ☑ | ☑ | ☑ | ☑ | 2025-10-08 16:39:28 UTC |

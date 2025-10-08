@@ -1,6 +1,6 @@
 import { getArticle } from "@/lib/content";
 import MDX from "@/lib/mdx";
-import JsonLd from "@/components/JsonLd";
+import SchemaAuto from "@/components/SchemaAuto";
 import { getTenantPack } from "@/lib/pack";
 import AdSlot from "@/components/AdSlot";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,7 +38,7 @@ export default function Page({ params }) {
 
   return (
     <>
-      <JsonLd data={jsonld} />
+      <SchemaAuto meta={a.meta} content={a.body} breadcrumbs={[{name:"Home",url:"/"},{name:"Articles",url:"/"}]} />
       <main className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8">
         <article className="lg:col-span-8">
           <div className="mb-6">

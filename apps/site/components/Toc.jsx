@@ -6,10 +6,10 @@ function slugify(text) {
   const s = (text || "")
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, "")   // drop punctuation
-    .replace(/\s+/g, "-")       // spaces -> dashes
-    .replace(/-+/g, "-")        // collapse dashes
-    .replace(/^-|-$/g, "");     // trim dashes
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
   return s || "h";
 }
 
@@ -23,8 +23,8 @@ export default function Toc({ containerId = "article" }) {
 
     const heads = Array.from(root.querySelectorAll("h2, h3"));
 
-    // Ensure every heading has a unique id (and fix collisions)
-    const seen = new Map(); // id -> count
+    // Guarantee unique, stable IDs
+    const seen = new Map();
     heads.forEach((h) => {
       const base = h.id ? h.id : slugify(h.textContent || "");
       const count = (seen.get(base) || 0) + 1;
@@ -42,7 +42,6 @@ export default function Toc({ containerId = "article" }) {
 
     const obs = new IntersectionObserver(
       (entries) => {
-        // pick the first heading crossing the threshold nearest the top
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => (a.target.offsetTop || 0) - (b.target.offsetTop || 0));
@@ -58,14 +57,12 @@ export default function Toc({ containerId = "article" }) {
 
   return (
     <Card className="sticky top-24">
-      <CardHeader>
-        <CardTitle className="text-sm">On this page</CardTitle>
-      </CardHeader>
+      <CardHeader><CardTitle className="text-sm">On this page</CardTitle></CardHeader>
       <CardContent className="space-y-1">
         <nav className="text-sm">
-          {items.map((it) => (
+          {items.map((it, i) => (
             <a
-              key={it.id}                // now guaranteed unique
+              key={`${it.id}-${i}`}   /* <-- index is now defined */
               href={`#${it.id}`}
               className={[
                 "block truncate py-1",

@@ -1,0 +1,5 @@
+{
+  "name": "devlaunch2",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "postAttachCommand": "cd /workspaces/${localWorkspaceFolderBasename}"
+}

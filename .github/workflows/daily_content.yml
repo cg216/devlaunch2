@@ -1,0 +1,44 @@
+name: daily-content
+on:
+  schedule:
+    - cron: "23 2 * * *"   # 02:23 UTC daily — adjust if you like
+  workflow_dispatch:
+
+jobs:
+  plan-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Discover live tenants (packs/*.json with "status":"live")
+        id: tenants
+        run: |
+          echo "TENANTS=$(jq -r 'select(.tenant.status=="live") | .tenant.slug' -c packs/*.json | tr '\n' ' ')" >> $GITHUB_OUTPUT
+
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+
+      - name: Install jq (Ubuntu)
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Generate drafts and open PR per tenant
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          for t in ${{ steps.tenants.outputs.TENNANTS }}; do
+            echo "== Tenant: $t =="
+            csv=$(node scripts/plan_daily.mjs "$t" || true)
+            if [ -z "${csv:-}" ]; then echo "No topics for $t, skipping"; continue; fi
+            branch="chore/${t}/daily-$(date +%Y%m%d)"
+            git checkout -b "$branch"
+            ./scripts/gen_batch.sh "$t" "$csv" "informational" "day-$(date +%Y%m%d)"
+
+            # Add PR metadata file to summarize changes
+            echo "Daily auto-drafts for $t" > /tmp/pr-body.txt
+            git push -u origin "$branch"
+            gh pr create --title "Daily drafts: $t ($(date +%Y-%m-%d))" \
+                         --body-file /tmp/pr-body.txt \
+                         --label content || true
+            git checkout -
+          done

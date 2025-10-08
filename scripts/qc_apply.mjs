@@ -17,7 +17,7 @@ gate("links", out.qc.linkBudget<=t.linkBudgetMax);
 gate("a11y", out.qc.a11yScore>=t.a11yScore);
 gate("perf", (out.qc.vitals.lcpMs<=t.lcpMs && out.qc.vitals.cls<=t.cls && out.qc.vitals.inpMs<=t.inpMs));
 gate("moderation", true);
-if (verdict==="green"){ status("approved"); run(`./scripts/flip_noindex.sh ${tenant} ${slug} false`); }
+if (verdict==="green"){ status("approved"); try { const fs2 = await import("fs"); if (fs2.default.existsSync("./scripts/flip_noindex.sh")) run(`./scripts/flip_noindex.sh ${tenant} ${slug} false`); } catch {} }
 else if (verdict==="amber"){ status("human_qc"); }
 else { status("ai_qc"); }
 console.log(JSON.stringify({tenant,slug,thresholds:t,qc:out.qc,verdict},null,2));

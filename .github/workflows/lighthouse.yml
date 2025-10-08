@@ -1,0 +1,17 @@
+name: lighthouse
+on: [pull_request, workflow_dispatch]
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: npm i -g @lhci/cli@0.13.x
+      - name: Run LHCI against preview (requires PREVIEW_URL)
+        run: |
+          export PREVIEW_URL="${PREVIEW_URL:-https://example.com}"
+          lhci collect --url="$PREVIEW_URL/" --url="$PREVIEW_URL/articles/nub-theory-explained"
+          lhci assert --assert.presets=lighthouse:recommended --assert.assertions.categories:performance="error:0.85"
+        env:
+          PREVIEW_URL: ${{ secrets.PREVIEW_URL }}

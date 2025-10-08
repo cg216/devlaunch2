@@ -1,0 +1,11 @@
+name: links
+on: [pull_request, workflow_dispatch]
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress --include-fragments --max-concurrency 6 .
+          fail: true

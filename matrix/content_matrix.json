@@ -1,0 +1,27 @@
+{
+  "weights": {
+    "hero": 1.0, "summary": 0.9, "quote": 0.6, "image": 0.9, "bullets": 0.8,
+    "faq": 0.7, "howto": 0.6, "comparison": 0.5, "calculator": 0.45, "quiz": 0.45,
+    "schemaNote": 1.0, "interlinks": 1.0, "cta": 0.9, "evidencePull": 0.8
+  },
+  "constraints": {
+    "minBlocks": 8, "maxBlocks": 14,
+    "image": { "min": 1, "max": 4 },
+    "faq": { "min": 2, "max": 5 },
+    "interlinks": { "min": 1, "max": 1 },
+    "citations": { "min": 2, "max": 5 }
+  },
+  "quiz_bank": [
+    { "id":"confidence-check", "title":"Confidence Check", "type":"single", "items":["I fully understand this","I somewhat understand this","I need the basics"] },
+    { "id":"myth-buster", "title":"Myth Buster", "type":"truefalse", "items":["Statement A","Statement B","Statement C"] }
+  ],
+  "calculator_bank": [
+    { "id":"percent-change", "title":"Percent Change", "formula":"((new-old)/old)*100", "fields":["old","new"], "units":"%" }
+  ],
+  "image_styles": ["minimal editorial","flat lay","soft light studio","diagrammatic","hand-sketched outline"],
+  "quote_bank": [
+    "Clarity is a superpower when your reader is skimming.",
+    "If it doesn’t help a human, it won’t help your rankings.",
+    "Quality is process, not luck."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "thresholds": {
+    "infoGain": 75,
+    "evidence": 90,
+    "similarityMax": 0.85,
+    "linkBudgetMax": 12,
+    "a11yScore": 90,
+    "lcpMs": 2500,
+    "cls": 0.1,
+    "inpMs": 200
+  },
+  "require": { "interactive": true, "upLinks": true, "faqParity": true, "videoIfTemplate": true }
+}

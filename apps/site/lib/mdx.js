@@ -1,27 +1,28 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import rehypeSlug from "rehype-slug";
-import rehypeAutolink from "rehype-autolink-headings";
-import Calculator from "@/components/Calculator";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+
 import Quiz from "@/components/Quiz";
-import Chart from "@/components/Chart";
 import FAQ from "@/components/FAQ";
+import Calculator from "@/components/Calculator";
+import KeyTakeaways from "@/components/KeyTakeaways";
+import ComparisonTable from "@/components/ComparisonTable";
 import Callout from "@/components/Callout";
-import Quote from "@/components/Quote";
-import ProsCons from "@/components/ProsCons";
+
+const components = { Quiz, FAQ, Calculator, KeyTakeaways, ComparisonTable, Callout };
 
 export default function MDX({ source }) {
   return (
     <MDXRemote
       source={source}
-      components={{ Calculator, Quiz, Chart, FAQ, Callout, Quote, ProsCons }}
       options={{
         mdxOptions: {
-          // MDX already supports HTML; we sanitize comments/doctype in prepare_content.mjs
           remarkPlugins: [remarkGfm],
-          rehypePlugins: [[rehypeSlug], [rehypeAutolink, { behavior: "wrap" }]]
-        }
+          rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: "wrap" }]],
+        },
       }}
+      components={components}
     />
   );
 }

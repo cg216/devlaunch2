@@ -1,25 +1,33 @@
 import "./globals.css";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import { getTenantPack } from "@/lib/pack";
-import AdSlot from "@/components/AdSlot";
 
 export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   title: { default: "DevLaunch Site", template: "%s • DevLaunch" },
   description: "Auto-generated, QC-gated content"
 };
 
 export default function RootLayout({ children }) {
   const pack = getTenantPack();
-  const palette = pack?.brand?.palette || { bg: "#ffffff", ink: "#0f172a" };
+  const palette = pack?.brand?.palette || {};
   return (
     <html lang="en">
-      <body style={{ fontFamily: "system-ui, sans-serif", color: palette.ink, background: palette.bg, lineHeight: 1.6, padding: 24 }}>
-        <header style={{ marginBottom: 16 }}>
-          <h1 style={{ margin: 0 }}>{pack?.tenant?.displayName || "Site"}</h1>
-          {/* Example top ad — will render only when pack.ads.enabled && pack.ads.placements.top === true */}
-          <AdSlot id="top" pack={pack} />
-        </header>
-        {children}
+      <body
+        style={{
+          // Brand variables
+          "--brand-primary": palette.primary || "#0ea5e9",
+          "--brand-ink":     palette.ink     || "#0f172a",
+          "--brand-muted":   palette.muted   || "#94a3b8",
+          "--brand-bg":      palette.bg      || "#ffffff"
+        }}
+        className="bg-[var(--brand-bg)] text-[var(--brand-ink)]"
+      >
+        <SiteHeader />
+        <main className="mx-auto max-w-6xl px-4 py-8">
+          {children}
+        </main>
+        <SiteFooter />
       </body>
     </html>
   );

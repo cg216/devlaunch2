@@ -1,100 +1,57 @@
-import { getArticle } from "@/lib/content";
 import MDX from "@/lib/mdx";
-import SchemaAuto from "@/components/SchemaAuto";
+import { getArticle } from "@/lib/content";
 import { getTenantPack } from "@/lib/pack";
-import AdSlot from "@/components/AdSlot";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
-import { Clock, BookOpen, Link as LinkIcon } from "lucide-react";
+import SchemaAuto from "@/components/SchemaAuto";
+import Toc from "@/components/Toc";
+import PillarNav from "@/components/PillarNav";
+import ShareBar from "@/components/ShareBar";
+import ReadingProgress from "@/components/ReadingProgress";
+import { Card, CardContent } from "@/components/ui/card";
 
-function slugify(text) {
-  return String(text).toLowerCase().replace(/[^a-z0-9\s-]/g, "").trim().replace(/\s+/g, "-");
-}
-function extractHeadings(md) {
-  const re = /^#{2,3}\s+(.+)$/gm;
-  const out = []; let m;
-  while ((m = re.exec(md))) {
-    const title = m[1].replace(/[*_`~]/g,"").trim();
-    out.push({ title, id: slugify(title), level: m[0].startsWith("###") ? 3 : 2 });
-  }
-  return out.slice(0,30);
-}
-function readingTime(md) {
-  const words = (md.match(/\b\w+\b/g)||[]).length;
-  return Math.max(1, Math.round(words/200));
-}
-
-export default function Page({ params }) {
-  const { slug } = params;
-  const a = getArticle(slug);
-  if (!a) return <div className="p-6">Not found</div>;
-
+export default function ArticlePage({ params }) {
+  const a = getArticle(params.slug);
   const pack = getTenantPack();
-  const palette = pack?.brand?.palette || { bg: "#ffffff", ink: "#0f172a", muted: "#64748b" };
-  const h = extractHeadings(a.body);
-  const rt = readingTime(a.body);
-  const jsonld = { "@context":"https://schema.org","@type":"Article","headline":a.meta.title,"inLanguage":"en","isAccessibleForFree":true };
+  if (!a) throw new Error("Article not found");
+
+  const title = a.meta?.title || a.slug.replace(/-/g," ");
+  const breadcrumbs = [{name:"Home", url:"/"},{name:"Articles", url:"/"}];
 
   return (
     <>
-      <SchemaAuto meta={a.meta} content={a.body} breadcrumbs={[{name:"Home",url:"/"},{name:"Articles",url:"/"}]} />
-      <main className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <article className="lg:col-span-8">
-          <div className="mb-6">
-            <h1 className="text-3xl font-black" style={{color:palette.ink}}>{a.meta.title}</h1>
-            <div className="mt-2 flex items-center gap-3 text-sm text-slate-600">
-              <span className="inline-flex items-center gap-1"><Clock size={14}/>{rt} min read</span>
-              {a.meta.noindex ? <Badge variant="amber">Draft</Badge> : <Badge variant="green">Published</Badge>}
-            </div>
-            {pack?.eeat?.disclaimer && (
-              <p className="mt-2 text-xs text-slate-500">{pack.eeat.disclaimer}</p>
-            )}
-          </div>
+      <ReadingProgress containerId="article" />
+      <SchemaAuto meta={a.meta} content={a.body} breadcrumbs={breadcrumbs} />
 
-          <AdSlot id="inArticleTop" pack={pack} />
+      {/* Gradient hero */}
+      <section className="relative overflow-hidden rounded-2xl border bg-white p-8 mb-8">
+        <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-emerald-200 blur-3xl opacity-40" />
+        <h1 className="text-3xl font-bold">{title}</h1>
+        {a.meta?.description && <p className="mt-2 max-w-3xl text-slate-600">{a.meta.description}</p>}
+      </section>
 
-          <div className="prose prose-slate max-w-none">
-            <MDX source={a.body} />
-          </div>
+      <div className="grid gap-8 xl:grid-cols-[56px_1fr_320px]">
+        {/* Left share */}
+        <div className="hidden xl:block">
+          <ShareBar title={title} />
+        </div>
 
-          <Separator className="my-6"/>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base flex items-center gap-2"><BookOpen size={16}/> Sources & further reading</CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-slate-600">
-              <p>This article cites authoritative sources and avoids unverified claims. See the “Sources” section within the content.</p>
-            </CardContent>
-          </Card>
-
-          <footer className="mt-8">
-            <AdSlot id="inArticleBottom" pack={pack} />
-          </footer>
+        {/* Main content */}
+        <article id="article" className="prose prose-slate max-w-none">
+          <MDX source={a.body} />
         </article>
 
-        <aside className="lg:col-span-4">
-          {h.length > 0 && (
-            <Card className="sticky top-6">
-              <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><LinkIcon size={16}/> On this page</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-1 text-sm">
-                  {h.map((x, i) => (
-                    <li key={i} className={x.level===3 ? "pl-3" : ""}>
-                      <a href={`#${x.id}`} className="hover:underline">{x.title}</a>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+        {/* Sidebar */}
+        <aside className="space-y-6">
+          <Toc />
+          <PillarNav />
+          {pack?.ads?.enabled ? (
+            <Card><CardContent className="py-4">Ad</CardContent></Card>
+          ) : (
+            <Card><CardContent className="py-4 text-sm text-slate-600">
+              {pack?.eeat?.disclaimer || "Educational only; not medical advice."}
+            </CardContent></Card>
           )}
-          <div className="mt-6">
-            <AdSlot id="sidebar" pack={pack} />
-          </div>
         </aside>
-      </main>
+      </div>
     </>
   );
 }

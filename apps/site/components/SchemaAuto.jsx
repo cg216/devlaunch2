@@ -2,7 +2,7 @@ import JsonLd from "@/components/JsonLd";
 import { getTenantPack } from "@/lib/pack";
 
 function tryParseFAQ(content) {
-  // Match <FAQ items={[ ...json... ]} />
+  // Match <FAQ items={ [ ... ] } />
   const m = content.match(/<FAQ\s+items=\{(\[[\s\S]*?\])\}/m);
   if (!m) return null;
   try {
@@ -49,7 +49,7 @@ export default function SchemaAuto({ meta, content, breadcrumbs=[] }) {
   const faq = tryParseFAQ(content);
   if (faq) things.push(faq);
 
-  // Calculator as WebApplication
+  // Calculator as WebApplication if present
   if (hasCalculator(content)) {
     things.push({
       "@context":"https://schema.org",

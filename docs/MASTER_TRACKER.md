@@ -1,5 +1,14 @@
-|ID|slug|tenant|Tenant|Slug|Title|Status|Owner|Links|A11y|Perf|Citations|Parity|Moderation|Last Updated|interactive|schema_parity|
-|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
+|ID|slug|tenant|Tenant|Slug|Title|Status|Owner|Links|A11y|Perf|Citations|Parity|Moderation|Last Updated|interactive|schema_parity|ui|
+|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
+||ramzi-method-accuracy|baby-gender|||||||||||||||pass|
+||skull-theory-explained|baby-gender|||||||||||||||pass|
+||nub-theory-explained|baby-gender|||||||||||||||pass|
+||ramzi-method-accuracy|baby-gender||||||||||||||pass|
+||skull-theory-explained|baby-gender||||||||||||||pass|
+||nub-theory-explained|baby-gender||||||||||||||pass|
+||ramzi-method-accuracy|baby-gender|||||||||||||pass||
+||skull-theory-explained|baby-gender|||||||||||||pass||
+||nub-theory-explained|baby-gender|||||||||||||pass||
 ||ramzi-method-accuracy|baby-gender||||||||||||||pass|
 ||skull-theory-explained|baby-gender||||||||||||||pass|
 ||nub-theory-explained|baby-gender||||||||||||||pass|

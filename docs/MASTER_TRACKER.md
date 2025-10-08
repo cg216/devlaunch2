@@ -1,3 +1,5 @@
+| ID | Tenant | Slug | Title | Status | Owner | Links | A11y | Perf | Citations | Parity | Moderation | Last Updated |
+|---:|:------:|:-----|:------|:------:|:-----:|:----:|:---:|:----:|:---------:|:------:|:----------:|:-------------:|
 # MASTER TRACKER (Canonical)
 | ID | Tenant | Slug | Title | Status | Owner | Gates: Links | A11y | Perf | Citations | Parity | Moderation | Last Updated |
 |---:|--------|------|-------|--------|-------|:------------:|:----:|:----:|:---------:|:------:|:----------:|:------------:|

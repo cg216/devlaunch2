@@ -1,0 +1,1 @@
+export default { experimental:{ mdxRs:true }, reactStrictMode:true };

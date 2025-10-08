@@ -1,0 +1,11 @@
+{
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.integrated.profiles.linux": {
+    "Bash (clean)": {
+      "path": "bash",
+      "args": ["--noprofile", "--norc"],
+      "icon": "terminal-bash"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash"
+}

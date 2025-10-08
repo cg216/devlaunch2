@@ -1,0 +1,60 @@
+{
+  "items": [
+    {
+      "q": "Which section appears in this article?",
+      "choices": [
+        "Key Takeaways",
+        "Banana",
+        "Weather",
+        "Unrelated"
+      ],
+      "answer": 0,
+      "explain": "Pulled from headings."
+    },
+    {
+      "q": "Which figure appears in this article?",
+      "choices": [
+        "1",
+        "1000",
+        "0.1",
+        "13"
+      ],
+      "answer": 0,
+      "explain": "Pulled from numbers present."
+    },
+    {
+      "q": "NIPT is diagnostic.",
+      "choices": [
+        "True",
+        "False",
+        "Depends",
+        "Unknown"
+      ],
+      "answer": 1,
+      "explain": "NIPT is screening, not diagnostic."
+    },
+    {
+      "q": "NIPT is diagnostic.",
+      "choices": [
+        "True",
+        "False",
+        "Depends",
+        "Unknown"
+      ],
+      "answer": 1,
+      "explain": "NIPT is screening, not diagnostic."
+    },
+    {
+      "q": "NIPT is diagnostic.",
+      "choices": [
+        "True",
+        "False",
+        "Depends",
+        "Unknown"
+      ],
+      "answer": 1,
+      "explain": "NIPT is screening, not diagnostic."
+    }
+  ],
+  "seed": 548150040
+}

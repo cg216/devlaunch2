@@ -1,7 +1,7 @@
 {
   "tenant": "baby-gender",
-  "slug": "ramzi-method-accuracy",
-  "title": "Ramzi, Nub & Skull",
+  "slug": "skull-theory-explained",
+  "title": "Skull Theory Explained",
   "outline": [
     "Hook (5s)",
     "Summary (15s)",
@@ -10,6 +10,6 @@
   ],
   "pullFromHeadings": true,
   "imageAssets": [
-    "ramzi-method-accuracy-1.jpg"
+    "skull-theory-explained-1.jpg"
   ]
 }

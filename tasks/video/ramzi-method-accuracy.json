@@ -1,0 +1,16 @@
+{
+  "tenant": "baby-gender",
+  "slug": "ramzi-method-accuracy",
+  "title": "Ramzi, Nub & Skull",
+  "outline": [
+    "Hook (5s)",
+    "Summary (15s)",
+    "Key Takeaways (20s)",
+    "CTA (5s)"
+  ],
+  "pullFromHeadings": true,
+  "imageAssets": [
+    "ramzi-method-accuracy-1.jpg",
+    "ramzi-method-accuracy-2.jpg"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "tenant": "baby-gender",
+  "slug": "skull-theory-explained",
+  "title": "Skull Theory Explained",
+  "outline": [
+    "Hook (5s)",
+    "Summary (15s)",
+    "Key Takeaways (20s)",
+    "CTA (5s)"
+  ],
+  "pullFromHeadings": true,
+  "imageAssets": [
+    "skull-theory-explained-1.jpg"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "tenant": "baby-gender",
+  "slug": "nub-theory-explained",
+  "title": "Nub Theory Explained",
+  "outline": [
+    "Hook (5s)",
+    "Summary (15s)",
+    "Key Takeaways (20s)",
+    "CTA (5s)"
+  ],
+  "pullFromHeadings": true,
+  "imageAssets": [
+    "nub-theory-explained-1.jpg"
+  ]
+}

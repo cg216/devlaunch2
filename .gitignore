@@ -6,3 +6,6 @@ dist
 .lhci
 .lycheecache
 .DS_Store
+
+# build-time copied tenant content
+apps/site/.content/
